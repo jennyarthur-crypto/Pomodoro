@@ -1,0 +1,654 @@
+@font-face {
+    font-family: kumbhBold;
+    src: url(./fonts/KumbhSans-Bold.ttf);
+}
+@font-face {
+    font-family: robotoSlabBold;
+    src: url(./fonts/RobotoSlab-Bold.ttf);
+}
+@font-face {
+    font-family: spaceMonoBold;
+    src: url(./fonts/SpaceMono-Bold.ttf);
+}
+
+:root{
+    --app-background-color: rgba(30, 33, 63, 1);
+    --background-text-color: rgba(215, 224, 255, 1);
+    --darkened-background-color: rgba(22, 25, 50, 1);
+    --small-text-color: rgb(159, 164, 185);
+    --active-button-color: rgba(30, 33, 63, 1);
+    --orange-color: rgba(248, 112, 112, 1);
+    --faded-orange-color: rgb(247, 171, 171);
+    --green-color: rgba(112, 243, 248, 1);
+    --faded-green-color: rgb(150, 238, 241);
+    --purple-color: rgba(216, 129, 248, 1);
+    --faded-purple-color: rgb(235, 180, 255);
+    --outer-circle-start-color: rgba(46, 50, 90, 1);
+    --outer-circle-end-color: rgba(14, 17, 42, 1);
+    --white: #fff;
+    --horizontal-line-color: rgb(255, 255, 255);
+    --setting-heading-color: rgba(22, 25, 50, 1);
+    --input-box-background: rgba(239, 241, 250, 1);
+    --font-text-color: rgb(74, 76, 85);
+    --primary-font-family: kumbhBold;
+    --primary-color: rgba(248, 112, 112, 1);
+    --faded-primary-color: rgb(247, 171, 171);
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    background: var(--app-background-color);
+    position: relative;
+    overflow: hidden;
+}
+
+.title{
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.title p{
+    color: var(--background-text-color);
+    font-family: var(--primary-font-family);
+    font-size: 2rem;
+}
+
+.buttons{
+    background: var(--darkened-background-color);
+    padding: 10px;
+    border: none;
+    border-radius: 33.5px;
+    width: 25rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+}
+
+.buttons button{
+    border: none;
+    padding: 20px;
+    border-radius: 26.5px;
+    width: 12rem;
+    background-color: var(--darkened-background-color);
+    color: var(--small-text-color);
+    font-family: var(--primary-font-family);
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition-duration: 0.3s;
+}
+
+.buttons button:hover{
+    background-color: var(--faded-primary-color);
+    color: var(--white);
+}
+
+.buttons .active{
+    background-color: var(--primary-color);
+    color: var(--active-button-color);
+}
+
+.timer-circles{
+    width: 30rem;
+    height: 30rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.outer-circle{
+    width: 30rem;
+    height: 30rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: linear-gradient(to left top,rgba(46, 50, 90, 1),rgba(14, 17, 42, 1));
+}
+
+.middle-circle{
+    width: 27rem;
+    height: 27rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(22, 25, 50, 1);
+}
+
+.inner-circle{
+    border: 12px solid var(--app-background-color--);
+    width: 24rem;
+    height: 24rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: end;
+    border-radius: 50%;
+    background: rgba(22, 25, 50, 1);
+    position: relative;
+}
+
+.inner-circle p{
+    font-family: var(--primary-font-family);
+    color: var(--background-text-color);
+}
+
+.inner-circle .time-and-restart{
+    height: 65%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: -65% 0;
+}
+
+.inner-circle .time{
+    font-size: 5rem;
+    text-align: center;
+}
+
+.inner-circle .restart{
+    margin-top: 2rem;
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: 20px;
+    margin-left: 1rem;
+    cursor: pointer;
+}
+.inner-circle .pause, .start, .resume{
+    margin-top: 2rem;
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: 15px;
+    margin-left: 1rem;
+    cursor: pointer;
+}
+.circle{
+    position: absolute;
+    top: -3.5%;
+}
+.e-c-base {
+    fill: none;
+    stroke: var(--app-background-color);
+    stroke-width: 10px
+  }
+  .e-c-progress {
+    fill: none;
+    stroke: var(--primary-color);
+    stroke-width: 10px;
+    transition: stroke-dashoffset 0.7s;
+  }
+  #e-pointer { transition: transform 0.7s; }
+  
+
+.inner-circle  .resume{
+    margin-top: 2rem;
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: 10px;
+    margin-left: 1rem;
+}
+.pause, .resume, .restart{
+    display: none;
+}
+.settings{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 5rem;
+}
+
+.settings img{
+    width: 2rem;
+    cursor: pointer;
+    transition-duration: 0.3s;
+}
+
+.settings img:hover{
+    width: 3rem;
+    opacity: 60%;
+}
+.settings-box{
+    position: absolute;
+    left: 50%;
+    top: 47%;
+    transform: translate(-50%,-50%);
+    height: 55vh;
+    width: 30vw;
+    background: var(--white);
+    border-radius: 25px;
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    display: none;
+}
+
+.box-heading{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 25px;
+}
+
+.box-heading p{
+    font-family: var(--primary-font-family);
+    font-size: 1.9rem;
+    color: var(--setting-heading-color);
+}
+
+.box-heading img{
+    width: 0.9rem;
+    opacity: 60%;
+    transition-duration: 0.3s;
+}
+
+.box-heading img:hover{
+    opacity: 100%;
+}
+
+hr{
+    background-color: var(--horizontal-line-color);
+    align-self: center;
+    width: 100%;
+}
+.full-bar{
+    width: 30vw;
+}
+.choose-minutes{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+}
+
+.minutes-heading{
+    letter-spacing: 5px;
+    color: var(--setting-heading-color);
+    font-family: var(--primary-font-family);
+    padding-bottom: 20px;
+}
+
+.input-minutes{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.input-minutes p{
+    color: rgba(30, 33, 63, 0.50);
+    font-family: var(--primary-font-family);
+    font-size: 0.8rem;
+    padding-bottom: 8px;
+}
+
+.input-minutes .inputs{
+    width: 33%;
+}
+
+.input-minutes .inputs input{
+    width: 90%;
+    height: 3rem;
+    border-radius: 10px;
+    background: var(--input-box-background);
+    border: none;
+    padding-left: 15px;
+    padding-right: 15px;
+    color: var(--setting-heading-color);
+    font-family: var(--primary-font-family);
+}
+
+.choose-font{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.font-heading p{
+    font-family: var(--primary-font-family);
+    letter-spacing: 5px;
+    font-size: 1rem;
+}
+
+.font-boxes{
+    display: flex;
+    width: 12rem;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.font-boxes > p{
+    padding: 18px;
+    border-radius: 50%;
+    background: var(--input-box-background);
+    color: var(--font-text-color);
+    cursor: pointer;
+    transition-duration: 0.3s;
+}
+
+.font-boxes > p:hover{
+    color: var(--app-background-color);
+    background: var(--background-text-color);
+    border-radius: 30%;
+}
+
+.font-boxes #kumbh-font{
+    font-family: var(--primary-font-family);
+}
+
+.font-boxes #roboto-font{
+    font-family: robotoSlabBold;
+}
+
+.font-boxes #spacemono-font{
+    font-family: spaceMonoBold;
+}
+
+.font-boxes .active-font{
+    color: var(--white);
+    background: var(--setting-heading-color);
+}
+
+.font-boxes .active-font:hover{
+    color: var(--white);
+    background: var(--setting-heading-color);
+}
+
+.choose-color{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.color-heading p{
+    font-family: var(--primary-font-family);
+    letter-spacing: 5px;
+    font-size: 1rem;
+}
+
+.color-boxes{
+    display: flex;
+    width: 12rem;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.color-boxes > div{
+    padding: 20px;
+    border-radius: 50%;
+    background: var(--input-box-background);
+    color: var(--font-text-color);
+    cursor: pointer;
+    transition-duration: 0.3s;
+}
+
+.color-boxes > div:hover{
+    border-radius: 30%;
+}
+
+.color-boxes #orange{
+    background: var(--orange-color);
+}
+
+.color-boxes #green{
+    background: var(--green-color);
+}
+
+.color-boxes #purple{
+    background: var(--purple-color);
+}
+
+.color-boxes > div img{
+    opacity: 0;
+}
+
+.color-boxes .active-color img{
+    opacity: 100%;
+}
+
+.apply{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 0;
+    bottom: -6%;
+}
+
+.apply button{
+    width: 11rem;
+    padding: 25px;
+    border: none;
+    border-radius: 26.5px;
+    background: var(--primary-color);
+    color: var(--white);
+    font-family: var(--primary-font-family);
+    font-size: 1rem;
+    transition-duration: 0.3s;
+}
+
+.apply button:hover{
+    background: var(--faded-primary-color);
+}
+
+
+
+
+/* responsiveness on smaller laptops, tablets and mobile devices */
+
+@media only screen and (max-width: 1370px)
+{
+    /* body{
+        display: none;
+    } */
+    .title p{
+        font-size: 1.5rem;
+    }
+    .outer-circle{
+        width: 22rem;
+        height: 22rem;
+    }
+    .middle-circle{
+        width: 19rem;
+        height: 19rem;
+    }
+    .inner-circle{
+        width: 16rem;
+        height: 16rem;
+    }
+
+    .buttons{
+        width: 25rem;
+        padding: 5px;
+        margin-top: 20px;
+    }
+    .buttons button{
+        padding: 10px;
+    }
+    .timer-circles{
+        width: 25rem;
+        height: 25rem;
+    }
+    .inner-circle .time{
+        font-size: 3rem;
+    }
+    .inner-circle .restart{
+        letter-spacing: 7px;
+    }
+    .settings-box{
+        height: 75vh;
+        width: 30vw;
+    }
+    .full-bar{
+        width: 30vw;
+    }
+    .apply button{
+        width: 9rem;
+        padding: 18px;
+    }
+}
+
+@media only screen and (max-width: 1024px)
+{
+    .settings-box{
+        height: 85vh;
+        width: 70vw;
+    }
+    .apply button{
+        width: 12rem;
+        padding: 25px;
+    }
+    .full-bar{
+        width: 70vw;
+    }
+    .apply{
+        bottom: -3%;
+    }
+}
+
+
+/* @media only screen and (max-width: 912px)
+{
+    .settings-box{
+        height: 85vh;
+        width: 70vw;
+    }
+    .apply button{
+        width: 12rem;
+        padding: 25px;
+    }
+    .full-bar{
+        width: 70vw;
+    }
+} */
+
+@media only screen and (max-width: 420px)
+{
+    .buttons{
+        width: 20rem;
+        padding: 5px;
+    }
+    .buttons button{
+        padding: 15px;
+    }
+    .timer-circles{
+        width: 20rem;
+        height: 20rem;
+    }
+    .outer-circle{
+        width: 18rem;
+        height: 18rem;
+    }
+    .middle-circle{
+        width: 15rem;
+        height: 15rem;
+    }
+    .inner-circle{
+        width: 13rem;
+        height: 13rem;
+    }
+    .inner-circle .time{
+        font-size: 2.5rem;
+    }
+    .inner-circle .restart{
+        letter-spacing: 7px;
+        margin-top: 1rem;
+    }
+    .settings-box{
+        height: 75vh;
+        width: 90vw;
+    }
+    .input-minutes .inputs input{
+        /* width: 5rem; */
+        height: 2rem;
+    }
+    .full-bar{
+        width: 90vw;
+    }
+    .color-boxes > div{
+        padding: 15px;
+    }
+    .font-boxes > p{
+        padding: 15px;
+    }
+    .apply{
+        bottom: -5%;
+    }
+    #svgWidth{
+        width: 225px !important;
+    }
+}
+
+@media only screen and (max-width: 375px)
+{
+    .apply button{
+        width: 10rem;
+        padding: 18px;
+    }
+    .minutes-heading{
+        letter-spacing: 2px;
+    }
+    .input-minutes .inputs{
+        width: 90%;
+    }
+    .choose-minutes{
+        width: 90vw;
+    }
+    .settings-box{
+        padding-left: 0.4rem;
+        padding-right: 0.4rem;
+        padding-top: 2rem;
+    }
+    .box-heading{
+        padding-left: 1.0rem;
+        padding-right: 1.0rem;
+    }
+    .font-heading p{
+        letter-spacing: 2px;
+        font-size: 0.9rem;
+    }
+    .font-boxes > p{
+        padding: 15px;
+    }
+    .font-boxes{
+        gap: 2px;
+    }
+    .color-heading p{
+        letter-spacing: 2px;
+        font-size: 0.9rem;
+    }
+    .color-boxes{
+        gap: 2px;
+    }
+    .color-boxes > div{
+        padding: 15px;
+    }
+}
